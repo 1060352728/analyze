@@ -20,19 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class Test {
 
     @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @RequestMapping("/test")
     public String product(){
-        for(int i=0;i<1000;i++){
+        for(int i=0;i<10000;i++){
             kafkaTemplate.send("tmf",i+","+i);
         }
         return "123";
     }
 
-    @KafkaListener(topics = "wiki-result")
+    /*@KafkaListener(groupId = "metric-group",topics = "tmf")
+    public void tmf(String student){
+        //Student student1 = (Student) JSON.toJavaObject(JSON.parseObject(student), Student.class);
+        log.info(student);
+    }*/
+
+    /*@KafkaListener(topics = "wiki-result")
     public void customer(String student){
         //Student student1 = (Student) JSON.toJavaObject(JSON.parseObject(student), Student.class);
         log.info(student);
-    }
+    }*/
 }

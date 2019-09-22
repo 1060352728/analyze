@@ -35,7 +35,7 @@ spring:
       connection-timeout: 1000000
   kafka:
     # 指定kafka 代理地址，可以多个
-    bootstrap-servers: 127.0.0.1:9092
+    bootstrap-servers: http://192.168.138.128:9092,http://192.168.138.129:9092,http://192.168.138.130:9092,http://192.168.138.131:9092,http://192.168.138.132:9092
     producer:
       retries: 0
       # 每次批量发送消息的数量
@@ -56,4 +56,4 @@ spring:
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     # 指定listener 容器中的线程数，用于提高并发量
     listener:
-      concurrency: 3
+      concurrency: 5
